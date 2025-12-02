@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ex03;
+﻿namespace ex03;
 
 public class CardNode
 {
@@ -13,12 +7,10 @@ public class CardNode
     public CardNode? Next { get; set; }
 
     public CardNode? Prev { get; set; }
-
 }
 
 public class Deck
 {
-
     public CardNode? Head { get; set; }
 
     public CardNode? Tail { get; set; }
@@ -93,7 +85,15 @@ public class Deck
         {
             Console.Write($"{iterator.Value} ");
             iterator = iterator.Next;
-
         }
+        Console.WriteLine();
+    }
+
+    public void LastToHead()
+    {
+        var pb = PopBack();
+        if (pb == null)
+            return;
+        PushFront(pb.Value);
     }
 }
