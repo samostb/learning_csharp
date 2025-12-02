@@ -26,4 +26,3 @@ for (int i = input.Length - 1; i > 0; i--)
 if (input.Length > 1)
     deck.PushFront(input[0]);
 deck.Print();
-
