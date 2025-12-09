@@ -14,7 +14,9 @@ for (int i = 0; i < parts.Length; i++)
         return;
     }
 }
-
-for (int i = 0;i < parts.Length;i++)
-    Console.Write($"{parts[i]} ");
+List<int> list = new List<int>(input);
+for (int i = 0; i < list.Count; i++)
+{
+    Console.WriteLine(list[i]);
+}
 Console.WriteLine();
