@@ -1,6 +1,7 @@
 ﻿{
     var lines = ReadFile("input.txt");
 
+    CountOfLines(lines);
     Console.Write("Input search word: ");
     var s = Console.ReadLine();
     var detection = Detection(s, lines);
@@ -46,7 +47,7 @@ List<string> ReadFile(string path)
 void Print(List<string> detectedLines, int detectedCount)
 {
     foreach (var d in detectedLines)
-        Console.WriteLine(d);
+        Console.WriteLine($"{d}");
     Console.Write($"=== {detectedCount} ===");
 }
 
@@ -56,6 +57,16 @@ void PrintToFile(List<string> detectedLines, int detectedCount, string path)
     using var writer = new StreamWriter(stream);
 
     foreach (var d in detectedLines)
-        writer.WriteLine(d);
+        writer.WriteLine($"{d}");
     writer.Write($"=== {detectedCount} ===");
+}
+
+void CountOfLines(List<string> lines)
+{
+    for (int i = 0; i < lines.Count; i++)
+    {
+        Console.WriteLine($"{i + 1}) {lines[i]}");
+    }
+    Console.WriteLine();
+    return;
 }
