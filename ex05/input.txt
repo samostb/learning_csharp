@@ -1,0 +1,26 @@
+asdasdasdasdas
+sadsadasdas
+dasdasdasasdasaassafdsggfghdsd
+
+gh
+
+
+s
+
+
+
+b aaa  bb bbbb aasa aaaa  aaa bb b a a a bbb bb a
+
+l.IndexOf(s, 0) => 2
+l.IndexOf(s, 2 + s.Length) => 9
+l.IndexOf(s, 9 + s.Length) => 16
+l.IndexOf(s, 16 + s.Length) => -1
+
+
+
+-- s = aaa
+
+
+fsdfsd
+fewtgyhwethwes
+wgwrr
