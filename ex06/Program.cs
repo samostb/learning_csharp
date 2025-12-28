@@ -1,12 +1,41 @@
 ﻿using ex06;
+using System.IO;
 
+try
 {
     var parents = ParseParents(Console.ReadLine());
     var values = Console.ReadLine();
     var root = BuildTree(parents, values);
     Print(root);
-    var findLeafs = FindLeafs(root);
+    var leafs = new List<TreeNode>(10);
+    FindLeafs(root, leafs);
+
+    Console.WriteLine("===================");
+    var maxPath = new List<TreeNode>(10);
+    foreach (TreeNode l in leafs)
+    {
+        var path = new List<TreeNode>(10);
+        PathFind(l, path, maxPath);
+        if (maxPath.Count < path.Count)
+        {
+            maxPath.Clear();
+            maxPath.AddRange(path);
+        }
+
+        PrintPath(path);
+        Console.WriteLine("***");
+    }
+
+    Console.WriteLine("------------------");
+    PrintPath(maxPath);
 }
+catch(Exception ex)
+{
+    Console.WriteLine(ex.Message);
+    return;
+}
+
+
 
 int[] ParseParents(string? s)
 {
@@ -15,14 +44,7 @@ int[] ParseParents(string? s)
     var parts = s.Split(',');
     var parents = new int[parts.Length];
     for (int i = 0; i < parts.Length; i++)
-    {
-        var success = int.TryParse(parts[i], out parents[i]);
-        if (!success)
-        {
-            Console.WriteLine("Error");
-            return [];
-        }
-    }
+        parents[i] = int.Parse(parts[i]);
     return parents;
 }
 
@@ -67,12 +89,43 @@ void Print(TreeNode? root)
 }
 
 // Листья
-List<TreeNode> FindLeafs(TreeNode? root)
+void FindLeafs(TreeNode? node, List<TreeNode> leafs)
 {
-    if (root.Children == null)
+    if (node == null)
+        return;
+    if (node.Children.Count == 0)
     {
-        Console.WriteLine($"{root.Value}");
+        leafs.Add(node);
     }
-    return [];
+    else
+    {
+        foreach (var child in node.Children)
+            FindLeafs(child, leafs);
+    }
+}
 
+void PathFind(TreeNode? node, List<TreeNode> path, List<TreeNode> maxPath)
+{
+    if (node == null)
+        return;
+
+    if (path.Count > 0 && path.Last().Value == node.Value)
+    {
+        if (maxPath.Count < path.Count)
+        {
+            maxPath.Clear();
+            maxPath.AddRange(path);
+        }
+
+        path.Clear();
+    }
+
+    path.Add(node);
+    PathFind(node.Parent, path, maxPath);
+}
+
+void PrintPath(List<TreeNode> path)
+{
+    foreach (var p in path)
+        Console.WriteLine($"{p}, ");
 }
