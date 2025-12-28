@@ -5,6 +5,7 @@
     var values = Console.ReadLine();
     var root = BuildTree(parents, values);
     Print(root);
+    var findLeafs = FindLeafs(root);
 }
 
 int[] ParseParents(string? s)
@@ -66,4 +67,12 @@ void Print(TreeNode? root)
 }
 
 // Листья
-// List<TreeNode> FindLeafs(TreeNode? root)
+List<TreeNode> FindLeafs(TreeNode? root)
+{
+    if (root.Children == null)
+    {
+        Console.WriteLine(root);
+    }
+    return [];
+
+}
