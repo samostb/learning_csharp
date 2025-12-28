@@ -71,7 +71,7 @@ List<TreeNode> FindLeafs(TreeNode? root)
 {
     if (root.Children == null)
     {
-        Console.WriteLine(root);
+        Console.WriteLine($"{root.Value}");
     }
     return [];
 
