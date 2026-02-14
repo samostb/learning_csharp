@@ -1,6 +1,6 @@
 ﻿using ex09;
 
-var a = new MyList();
+var a = new MyList<int?>();
 a.Add(1);
 a.Add(2);
 a.Add(3);
