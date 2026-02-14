@@ -69,3 +69,13 @@ a.Add(3);
 a.Add(3);
 a.Add(3);
 a.Print();
+Console.WriteLine("---------------");
+
+var b = new MyList<int>();
+b.Add(1);
+b.Add(2);
+b.Add(3);
+foreach (var x in b)
+{
+    Console.WriteLine(x);
+}

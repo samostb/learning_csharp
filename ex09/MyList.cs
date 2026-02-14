@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ex09;
-internal class MyList<T>
+internal class MyList<T> : IEnumerable<T>
 {
     private T?[] _storage = new T?[5];
     private int _count = 0;
@@ -58,4 +59,50 @@ internal class MyList<T>
 
     }
 
+    public T? this[int index]
+    {
+        get => _storage[index];
+        set => _storage[index] = value;
+    }
+
+    public IEnumerator<T> GetEnumerator()
+    {
+        return new MyListEnumerator<T>(this);
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        throw new NotImplementedException();
+    }
+}
+
+internal class MyListEnumerator<T> : IEnumerator<T?>
+{
+    private MyList<T?> _list;
+    private int _position = -1;
+
+    public MyListEnumerator(MyList<T?> list)
+    {
+        _list = list;
+    }
+
+    public T? Current => _list[_position];
+
+    object? IEnumerator.Current => Current;
+
+    public void Dispose()
+    {
+    }
+
+    public bool MoveNext()
+    {
+        _position++;
+        return _position < _list.Count();
+
+    }
+
+    public void Reset()
+    {
+        _position = -1;
+    }
 }
