@@ -17,8 +17,7 @@ internal class Map
 
     private void DrawHorizontalLine()
     {
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine(new string(BordersSymbol, Width));
+        ColorConsole.WriteLineColor(new string(BordersSymbol, Width), ConsoleColor.Red);
     }
 
     private void DrawVerticalLine()
@@ -26,8 +25,7 @@ internal class Map
         var line = $"{BordersSymbol}{new string(' ', Width - 2)}{BordersSymbol}";
         for (int i = 0; i < Height - 2; i++)
         {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(line);
+            ColorConsole.WriteLineColor(line, ConsoleColor.Red);
         }
     }
 }
