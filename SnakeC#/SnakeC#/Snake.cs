@@ -15,6 +15,7 @@ internal class Snake
     {
         var head = Body.First();
 
+        Console.ForegroundColor = ConsoleColor.Green;
         Console.SetCursorPosition(head.X, head.Y);
         Console.Write(HeadSymbol);
         //foreach (var p in Body)
