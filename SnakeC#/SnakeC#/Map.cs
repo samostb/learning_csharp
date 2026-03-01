@@ -28,4 +28,9 @@ internal class Map
             ColorConsole.WriteLineColor(line, ConsoleColor.Red);
         }
     }
+    public void PrintGameOver()
+    {
+        Console.SetCursorPosition(Width / 2 - 5, Height / 2);
+        Console.Write("Game Over");
+    }
 }

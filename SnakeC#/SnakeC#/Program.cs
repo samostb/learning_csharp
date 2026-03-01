@@ -16,6 +16,9 @@ while (snake.Alive)
 }
 
 snake.Draw();
+map.PrintGameOver();
+snake.Blink();
+
 
 Console.SetCursorPosition(0, map.Height);
 Console.ReadKey();

@@ -81,4 +81,14 @@ internal class Snake
         Alive = false;
 
     }
+
+    public void Blink()
+    {
+        for (int i = 0; i < i + 1; i++)
+        {
+            Clear();
+            Thread.Sleep(500);
+            Draw();
+        }
+    }
 }
