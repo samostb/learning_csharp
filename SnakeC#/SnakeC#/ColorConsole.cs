@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using static System.Console;
 
 namespace SnakeC_;
 
@@ -11,13 +7,13 @@ internal static class ColorConsole
     public static void WriteLineColor(string text, ConsoleColor color)
     {
         WriteColor(text, color);
-        Console.WriteLine();
+        WriteLine();
     }
 
     public static void WriteColor(string text, ConsoleColor color)
     {
-        Console.ForegroundColor = color;
-        Console.Write(text);
+        ForegroundColor = color;
+        Write(text);
     }
 
     public static void WriteLineColor(char text, ConsoleColor color)

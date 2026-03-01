@@ -18,7 +18,7 @@ internal class Snake
     public char HeadSymbol { get; } = '0';
     public char BodySymbol { get; } = 'O';
     public List<Point> Body { get; }
-    public DirectionsEnum Direction { get; }
+    public DirectionsEnum Direction { get; private set; }
     public List<Point> RemovableOldPoints { get; }
     public bool Alive { get; private set; }
 
@@ -84,11 +84,40 @@ internal class Snake
 
     public void Blink()
     {
-        for (int i = 0; i < i + 1; i++)
+        while(true)
         {
             Clear();
-            Thread.Sleep(500);
+            Thread.Sleep(200);
             Draw();
+            Thread.Sleep(200);
         }
+    }
+
+    public void SetDirectionUp()
+    {
+        if (Direction == DirectionsEnum.Up || Direction == DirectionsEnum.Down)
+            return;
+        Direction = DirectionsEnum.Up;
+    }
+
+    public void SetDirectionDown()
+    {
+        if (Direction == DirectionsEnum.Up || Direction == DirectionsEnum.Down)
+            return;
+        Direction = DirectionsEnum.Down;
+    }
+
+    public void SetDirectionLeft()
+    {
+        if (Direction == DirectionsEnum.Left || Direction == DirectionsEnum.Right)
+            return;
+        Direction = DirectionsEnum.Left;
+    }
+
+    public void SetDirectionRight()
+    {
+        if (Direction == DirectionsEnum.Left || Direction == DirectionsEnum.Right)
+            return;
+        Direction = DirectionsEnum.Right;   
     }
 }
