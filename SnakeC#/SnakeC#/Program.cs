@@ -17,6 +17,7 @@ var foodGenerator = new FoodGenerator(map, snake);
 
 while (snake.Alive)
 {
+    map.DrawFoods();
     snake.Draw();
     snake.Move();
     judge.CheckAlive();

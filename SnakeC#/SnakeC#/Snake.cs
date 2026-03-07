@@ -120,4 +120,16 @@ internal class Snake
             return;
         Direction = DirectionsEnum.Right;   
     }
+        
+    public bool HitCoordinates(Point p)
+    {
+        foreach (var i in Body)
+        {
+            if (p == i)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
