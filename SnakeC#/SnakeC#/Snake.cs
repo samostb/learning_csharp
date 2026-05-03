@@ -22,6 +22,15 @@ internal class Snake
     public List<Point> RemovableOldPoints { get; }
     public bool Alive { get; private set; }
 
+    private int _countEat = 0;
+    private TimeSpan _moveDuration = TimeSpan.Zero;
+
+
+    /// <summary>
+    /// Square per second
+    /// </summary>
+    private double _speed = 4.5;
+
     public void Draw()
     {
         var head = Body.First();
@@ -54,7 +63,19 @@ internal class Snake
 
 
 
-    public void Move()
+    public void Move(TimeSpan timeSpan)
+    {
+        _moveDuration += timeSpan;
+        var path = (int)(_moveDuration.Milliseconds / 1000.0 * _speed);
+        while (path >= 1)
+        {
+            Move();
+            path--;
+            _moveDuration -= TimeSpan.FromMilliseconds(1.0 / (_speed / 1000));
+        }
+    }
+    
+    private void Move()
     {
         switch (Direction)
         {
@@ -71,9 +92,16 @@ internal class Snake
                 Body.Insert(0, new Point { X = Body.First().X + 1, Y = Body.First().Y });
                 break;
         }
-        var LastElement = Body.Last();
-        RemovableOldPoints.Add(LastElement);
-        Body.Remove(LastElement);
+        var lastElement = Body.Last();
+        RemovableOldPoints.Add(lastElement);
+        if (_countEat > 0)
+        {
+            _countEat--;
+        }
+        else
+        {
+            Body.Remove(lastElement);
+        }
     }
 
     public void Kill()
@@ -84,7 +112,7 @@ internal class Snake
 
     public void Blink()
     {
-        while(true)
+        while (true)
         {
             Clear();
             Thread.Sleep(200);
@@ -118,9 +146,9 @@ internal class Snake
     {
         if (Direction == DirectionsEnum.Left || Direction == DirectionsEnum.Right)
             return;
-        Direction = DirectionsEnum.Right;   
+        Direction = DirectionsEnum.Right;
     }
-        
+
     public bool HitCoordinates(Point p)
     {
         foreach (var i in Body)
@@ -131,5 +159,17 @@ internal class Snake
             }
         }
         return false;
+    }
+
+    public void Eat()
+    {
+        _countEat++;
+        
+    }
+
+    public void Poisoned()
+    {
+        //var lastElement = Body.Last();
+        //Body.Remove(lastElement);
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SnakeC_.Foods
 {
-    internal class SimpleFood: FoodBase
+    internal class SimpleFood : FoodBase
     {
         public SimpleFood(Point point) : base(point)
         {
@@ -14,7 +14,8 @@ namespace SnakeC_.Foods
 
         public override void Effect(Snake snake)
         {
-            Console.WriteLine("Eat simple food");
+            snake.Eat();
+            //Console.WriteLine("Eat simple food");
         }
 
         public override char GetSymbol()

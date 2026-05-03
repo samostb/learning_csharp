@@ -22,6 +22,23 @@ internal class Map
         }
     }
 
+    public FoodBase? GetFood(Point x)
+    {
+        foreach (var food in _foods)
+        {
+            if (food.Point == x)
+            {
+                return food;
+            }
+        }
+        return null;
+    }
+
+    public void DeleteFood(FoodBase food)
+    {
+        _foods.Remove(food);
+    }
+
     public void DrawFoods()
     {
         char symbol;
@@ -36,26 +53,15 @@ internal class Map
         }
     }
 
+
+
     public void DrawFullMap()
     {
-        DrawHorizontalLine();
-        DrawVerticalLine();
-        DrawHorizontalLine();
+        InterfaceDrawer.DrawHorizontalLine(BordersSymbol, Width, ConsoleColor.Red);
+        InterfaceDrawer.DrawVerticalColumns(BordersSymbol, Width, Height, ConsoleColor.Red);
+        InterfaceDrawer.DrawHorizontalLine(BordersSymbol, Width, ConsoleColor.Red);
     }
 
-    private void DrawHorizontalLine()
-    {
-        ColorConsole.WriteLineColor(new string(BordersSymbol, Width), ConsoleColor.Red);
-    }
-
-    private void DrawVerticalLine()
-    {
-        var line = $"{BordersSymbol}{new string(' ', Width - 2)}{BordersSymbol}";
-        for (int i = 0; i < Height - 2; i++)
-        {
-            ColorConsole.WriteLineColor(line, ConsoleColor.Red);
-        }
-    }
     public void PrintGameOver()
     {
         Console.SetCursorPosition(Width / 2 - 5, Height / 2);
